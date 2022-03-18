@@ -34,6 +34,7 @@ import Blogs from '../components/pages/blogs/Blogs'
 import BlogDetail from '../components/pages/blogs/BlogDetail'
 import BlogList from '../components/pages/blogs/BlogList'
 import WriterInformation from '../components/pages/blogs/WriterInformation'
+import Testimonials from '../components/pages/testimonials/Testimonials'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -197,6 +198,11 @@ const routes = [
     path: '/writer-information',
     name: 'Writer Information',
     component: WriterInformation,
+  },
+   {
+    path: '/testimonials',
+    name: 'Testimonials',
+    component: Testimonials,
   },
 ]
 
