@@ -80,32 +80,43 @@
           <!-- main content end -->
         </div>
         <div class="right-sidebar hidden w-1/6 lg:block">
-          <VueSlickCarousel
-            :autoplay="true"
-            :arrows="false"
-            :dots="true"
-            :adaptiveHeight="true"
-          >
-            <div v-for="(testimonial, i) in testimonials" :key="i" class="pl-5">
-              <div class="bg-custom-lightyellow border-custom-blue2 py-4 px-8">
-                <span class="font-bold">RAVE REVIEWS</span
-                ><button
-                  class="bg-custom-blue2 hover:bg-custom-blue3 float-right px-5 py-0.5 text-white"
-                >
-                  View More
-                </button>
-                <p class="mt-4">{{ testimonial.comment }}</p>
-                <img
-                  v-if="testimonial.img_src.length >= 1"
-                  class="float-left mt-5 mr-3 h-20 w-20 rounded-full"
-                  :src="testimonial.img_src"
-                  alt="user-image"
-                />
-                <p class="mt-8 text-2xl font-bold">- {{ testimonial.name }}.</p>
-                <p>DVC Sales Client {{ testimonial.year }}</p>
-              </div>
+          <div class="pl-5">
+            <div
+              class="rounded-md bg-gradient-to-b from-blue-50 to-blue-100 pb-10 shadow-md"
+            >
+              <VueSlickCarousel
+                :autoplay="true"
+                :arrows="false"
+                :dots="true"
+                :adaptiveHeight="true"
+              >
+                <div v-for="(testimonial, i) in testimonials" :key="i">
+                  <div class="border-custom-blue2 text-custom-blue5 py-4 px-8">
+                    <span class="font-bold">RAVE REVIEWS</span
+                    ><button
+                      class="bg-custom-blue2 hover:bg-custom-blue3 float-right px-5 py-0.5 text-white"
+                    >
+                      View More
+                    </button>
+                    <p class="mt-4">{{ testimonial.comment }}</p>
+                    <img
+                      v-if="testimonial.img_src.length >= 1"
+                      class="float-left mt-5 mr-3 h-20 w-20 rounded-full"
+                      :src="testimonial.img_src"
+                      alt="user-image"
+                    />
+                    <p class="mt-8 text-2xl font-bold">
+                      - {{ testimonial.name }}.
+                    </p>
+                    <p>DVC Sales Client {{ testimonial.year }}</p>
+                    <br />
+                    <hr class="border border-gray-300" />
+                    <!-- <p class="border border-black"></p> -->
+                  </div>
+                </div>
+              </VueSlickCarousel>
             </div>
-          </VueSlickCarousel>
+          </div>
         </div>
       </div>
     </div>
