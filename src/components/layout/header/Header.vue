@@ -1,6 +1,8 @@
 <template>
   <div class="sticky top-0 z-50">
-    <div class="bg-custom-blue3 z-40 grid w-full grid-cols-12 px-4 text-white md:px-12">
+    <div
+      class="bg-custom-blue3 z-40 grid w-full grid-cols-12 px-4 text-white md:px-12"
+    >
       <div class="col-span-4 my-auto sm:col-span-5">
         <div class="grid grid-cols-12 md:gap-x-4">
           <div class="col-span-12 my-auto lg:col-span-2 2xl:hidden">
@@ -13,19 +15,50 @@
             </button>
           </div>
           <div class="col-span-10 hidden lg:block 2xl:col-span-12">
-            We helped over 10,000 families buy and sell Disney Vacation Club Memberships. Since 1993
+            We helped over 10,000 families buy and sell Disney Vacation Club
+            Memberships. Since 1993
           </div>
         </div>
       </div>
       <div class="col-span-4 my-auto justify-self-center sm:col-span-2">
-        <img class="w-28 md:w-48" src="/assets/DVC-Sales-White.png" alt="dvc-sales-logo" />
+        <img
+          class="w-28 md:w-48"
+          src="/assets/DVC-Sales-White.png"
+          alt="dvc-sales-logo"
+        />
       </div>
       <div class="col-span-4 my-auto text-right sm:col-span-5">
         <ul
           class="space-x-2 text-xl md:space-x-4 md:text-2xl xl:space-x-12 xl:text-3xl 2xl:space-x-36"
         >
+          <li class="inline">
+            <div class="group relative inline-block text-left">
+              <i class="fas fa-bell pb-2 text-xl"></i>
+              <div
+                class="custom-sidebar bg-custom-lightcream text-custom-blue5 absolute -left-80 hidden h-96 w-96 overflow-y-auto rounded p-4 shadow-xl group-hover:block"
+              >
+                <a href="#" v-for="(item, i) in 10" :key="i">
+                  <div
+                    class="bg-custom-lightergreen mb-5 rounded p-2 shadow-md"
+                  >
+                    <span class="float-left text-xl font-bold"
+                      >- Lori Webb.</span
+                    >
+                    <span class="float-right text-xl">1 Jan, 2020</span>
+                    <br />
+                    <p class="text-xl">
+                      " Lorem ipsum dolor sit amet consetur, adipising. ... "
+                    </p>
+                  </div>
+                </a>
+                <a class="text-xl font-bold" href="#">Read More ...</a>
+              </div>
+            </div>
+          </li>
           <li class="hidden md:inline"><a class="py-3" href="#">LISTING</a></li>
-          <li class="hidden md:inline"><a class="py-3" href="#">TESTIMONIALS</a></li>
+          <li class="hidden md:inline">
+            <a class="py-3" href="#">TESTIMONIALS</a>
+          </li>
           <li class="inline">
             <a
               href="#"
@@ -39,7 +72,7 @@
     </div>
     <!-- sidebar start -->
     <div
-      class="header-sidebar bg-custom-lightcream absolute z-30 max-h-screen w-56 overflow-y-auto px-2 pt-3 pb-10 shadow transition-all duration-700 ease-in-out"
+      class="custom-sidebar bg-custom-lightcream absolute z-30 hidden max-h-screen w-56 overflow-y-auto px-2 pt-3 pb-10 shadow transition-all duration-700 ease-in-out"
       :class="showMenu ? 'left-0' : '-left-96 2xl:left-0'"
     >
       <ul class="text-custom-blue4 mb-8 italic">
@@ -101,23 +134,23 @@ export default {
 </script>
 <style>
 /* width */
-.header-sidebar::-webkit-scrollbar {
+.custom-sidebar::-webkit-scrollbar {
   width: 7px;
 }
 
 /* Track */
-.header-sidebar::-webkit-scrollbar-track {
+.custom-sidebar::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
 /* Handle */
-.header-sidebar::-webkit-scrollbar-thumb {
+.custom-sidebar::-webkit-scrollbar-thumb {
   background: #1f4e79;
   border-radius: 10px;
 }
 
 /* Handle on hover */
-.header-sidebar::-webkit-scrollbar-thumb:hover {
+.custom-sidebar::-webkit-scrollbar-thumb:hover {
   background: #337ab7;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div>
     <Header />
-    <div class="main-page bg-custom-bg1 text-custom-blue4 pt-5 pb-12 text-xl">
+    <div class="main-page bg-custom-bg1 pt-5 pb-12 text-xl text-custom-blue4">
       <!-- page title start-->
       <h1
-        class="md:text-pTitle text-custom-primary font-body my-5 text-center text-2xl font-normal uppercase"
+        class="my-5 text-center font-body text-2xl font-normal uppercase text-custom-primary md:text-pTitle"
       >
         Testimonials
       </h1>
@@ -33,18 +33,18 @@
               <button
                 v-for="(number, i) in 10"
                 :key="i"
-                class="bg-custom-blue2 hover:bg-custom-blue3 m-1 h-10 w-10 text-white"
+                class="m-1 h-10 w-10 bg-custom-blue2 text-white hover:bg-custom-blue3"
               >
                 {{ number }}
               </button>
               <span class="mx-1 text-3xl">...</span>
               <button
-                class="bg-custom-blue2 hover:bg-custom-blue3 m-1 h-10 w-10 text-white"
+                class="m-1 h-10 w-10 bg-custom-blue2 text-white hover:bg-custom-blue3"
               >
                 11
               </button>
               <button
-                class="bg-custom-blue2 hover:bg-custom-blue3 m-1 h-10 w-16 text-white"
+                class="m-1 h-10 w-16 bg-custom-blue2 text-white hover:bg-custom-blue3"
               >
                 Next >
               </button>
@@ -55,11 +55,11 @@
               <div
                 v-for="(testimonial, i) in testimonials"
                 :key="i"
-                class="bg-custom-lightyellow border-custom-blue2 mt-10 w-96 py-4 px-8"
+                class="mt-10 w-96 border-custom-blue2 bg-custom-lightyellow py-4 px-8"
               >
                 <span class="font-bold">RAVE REVIEWS</span
                 ><button
-                  class="bg-custom-blue2 hover:bg-custom-blue3 float-right px-5 py-0.5 text-white"
+                  class="float-right bg-custom-blue2 px-5 py-0.5 text-white hover:bg-custom-blue3"
                 >
                   View More
                 </button>
@@ -77,6 +77,38 @@
               </div>
             </VueSlickCarousel>
           </section>
+          <section>
+            <div
+              class="group group group relative mt-32 ml-96 mb-96 inline-block"
+            >
+              <i class="fas fa-bell pb-2 text-2xl"></i>
+              <div
+                class="absolute -ml-48 hidden w-96 rounded bg-custom-lightcream p-5 group-hover:block"
+              >
+                <a href="#">
+                  <div
+                    v-for="(item, i) in 2"
+                    :key="i"
+                    class="my-4 rounded bg-custom-lightergreen p-2 shadow-md"
+                  >
+                    <p class="text-xl">
+                      " Lorem ipsum dolor sit amet consectetur, adipisicing
+                      elit. Dicta, ipsum sit amet consectetur adipisicing elit
+                      ... "
+                    </p>
+                    <img
+                      class="float-left mt-3 mr-3 h-16 w-16 rounded-full"
+                      src="assets/Lori-Picture.jpg"
+                      alt="user-image"
+                    />
+                    <p class="mt-5 text-xl font-bold">- Lori Webb.</p>
+                    <p>DVC Sales Client 2020</p>
+                  </div>
+                </a>
+                <a class="inline-block font-bold" href="#">Read More ...</a>
+              </div>
+            </div>
+          </section>
           <!-- main content end -->
         </div>
         <div class="right-sidebar hidden w-1/6 lg:block">
@@ -91,10 +123,10 @@
                 :adaptiveHeight="true"
               >
                 <div v-for="(testimonial, i) in testimonials" :key="i">
-                  <div class="border-custom-blue2 text-custom-blue5 py-4 px-8">
+                  <div class="border-custom-blue2 py-4 px-8 text-custom-blue5">
                     <span class="font-bold">RAVE REVIEWS</span
                     ><button
-                      class="bg-custom-blue2 hover:bg-custom-blue3 float-right px-5 py-0.5 text-white"
+                      class="float-right bg-custom-blue2 px-5 py-0.5 text-white hover:bg-custom-blue3"
                     >
                       View More
                     </button>

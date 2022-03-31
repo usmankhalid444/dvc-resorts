@@ -35,6 +35,7 @@ import BlogDetail from '../components/pages/blogs/BlogDetail'
 import BlogList from '../components/pages/blogs/BlogList'
 import WriterInformation from '../components/pages/blogs/WriterInformation'
 import Testimonials from '../components/pages/testimonials/Testimonials'
+import VacationPointsCalculator from '../components/pages/vacation-points-calculator/VacationPointsCalculator'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -203,6 +204,11 @@ const routes = [
     path: '/testimonials',
     name: 'Testimonials',
     component: Testimonials,
+  },
+  {
+    path: '/vacation-points-calculator',
+    name: 'Vacation Points Calculator',
+    component: VacationPointsCalculator,
   },
 ]
 
