@@ -1,10 +1,10 @@
 <template>
   <div>
     <Header />
-    <div class="main-page bg-custom-bg1 pt-5 pb-12 text-xl text-custom-blue4">
+    <div class="main-page bg-custom-bg1 text-custom-blue4 pt-5 pb-12 text-xl">
       <!-- page title start-->
       <h1
-        class="my-5 text-center font-body text-2xl font-normal uppercase text-custom-primary md:text-pTitle"
+        class="font-body text-custom-primary md:text-pTitle my-5 text-center text-2xl font-normal uppercase"
       >
         DISNEY VACATION POINTS CALCULATOR
       </h1>
@@ -15,11 +15,11 @@
           <!-- main content start  -->
           <!-- date picker start -->
           <section>
-            <div class="mx-auto w-full lg:w-96 xl:w-35rem">
+            <div class="xl:w-35rem mx-auto w-full lg:w-96">
               <form class="rounded px-5 py-3" @submit.prevent>
                 <div class="mb-4">
                   <span
-                    class="mb-2 block text-left text-3xl text-custom-orange2"
+                    class="text-custom-orange2 mb-2 inline text-left text-3xl"
                     >TRAVEL DATES</span
                   >
                   <DatePicker
@@ -96,10 +96,411 @@
                   </DatePicker>
                 </div>
               </form>
+              <p class="text-custom-green1 text-center text-2xl">
+                ( 2 Nights )
+              </p>
             </div>
           </section>
           <!-- date picker end -->
-          <div></div>
+          <!-- room points start -->
+          <section>
+            <div
+              class="custom-scrollbar relative mx-auto mt-5 h-96 w-full xl:w-11/12"
+              :class="range.start == '' ? 'overflow-hidden' : 'overflow-x-auto'"
+            >
+              <table class="w-full text-xl">
+                <thead class="sticky top-0">
+                  <tr class="bg-custom-blue4 text-white">
+                    <th class="pl-5 text-left">RESORT</th>
+                    <th class="text-left">VIEW</th>
+                    <th class="text-left">STUDIO</th>
+                    <th class="text-left">ONE BEDROOM</th>
+                    <th class="text-left">TWO BEDROOM</th>
+                    <th class="text-left">THREE BEDROOM</th>
+                    <th class="text-left">OTHER</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(resort, i) in resort_points"
+                    :key="i"
+                    class="group odd:bg-custom-lightcream hover:bg-custom-lightergreen"
+                  >
+                    <td class="pl-5">
+                      <p>{{ resort.name }}</p>
+                      <button
+                        class="bg-custom-green1 my-2 hidden rounded py-0.5 px-1 text-white group-hover:block"
+                      >
+                        Point Chart
+                      </button>
+                    </td>
+                    <td>
+                      <p v-for="(view, i) in resort.view" :key="i">
+                        {{ view }}
+                      </p>
+                    </td>
+                    <td>
+                      <p v-for="(studio, i) in resort.studio" :key="i">
+                        {{ studio }}
+                      </p>
+                    </td>
+                    <td>
+                      <p v-for="(one_bed, i) in resort.one_bedroom" :key="i">
+                        {{ one_bed }}
+                      </p>
+                    </td>
+                    <td>
+                      <p v-for="(two_bed, i) in resort.two_bedroom" :key="i">
+                        {{ two_bed }}
+                      </p>
+                    </td>
+                    <td>
+                      <p
+                        v-for="(three_bed, i) in resort.three_bedroom"
+                        :key="i"
+                      >
+                        {{ three_bed }}
+                      </p>
+                    </td>
+                    <td>
+                      <p v-for="(other, i) in resort.other" :key="i">
+                        {{ other }}
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div v-if="range.start == ''">
+                <div
+                  class="h-35rem absolute top-0 w-full bg-gray-400 text-center opacity-40"
+                ></div>
+                <div class="absolute top-0 w-full text-center">
+                  <span
+                    class="bg-custom-lightcream mt-32 inline-block rounded px-5 py-1 text-5xl"
+                  >
+                    Select date above
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- room points end -->
+          <!-- point chart start -->
+          <section>
+            <div
+              class="custom-scrollbar mx-auto mt-8 mb-14 w-full overflow-auto"
+            >
+              <p class="text-center text-3xl">Animal Kingdom - 2022</p>
+              <table class="mt-5 w-full">
+                <thead>
+                  <tr class="bg-custom-blue3 text-white">
+                    <th>Dates</th>
+                    <th>Days</th>
+                    <th class="border-l border-r-2 border-white" colspan="4">
+                      Studio
+                    </th>
+                    <th class="border-l border-r-2 border-white" colspan="4">
+                      One Bedroom
+                    </th>
+                    <th class="border-l border-r-2 border-white" colspan="4">
+                      Two Bedrrom
+                    </th>
+                    <th class="border-l border-r-2 border-white" colspan="2">
+                      Grand Villa
+                    </th>
+                  </tr>
+                  <tr class="bg-custom-blue2 text-white">
+                    <th class="bg-custom-blue3 w-12 px-1 font-normal"></th>
+                    <th class="bg-custom-blue3 w-12 px-1 font-normal"></th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Value
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Standard
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Savana
+                    </th>
+                    <th
+                      class="w-12 border border-r-2 border-white px-1 font-normal"
+                    >
+                      Club
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Value
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Standard
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Savana
+                    </th>
+                    <th
+                      class="w-12 border border-r-2 border-white px-1 font-normal"
+                    >
+                      Club
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Value
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Standard
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Savana
+                    </th>
+                    <th
+                      class="w-12 border border-r-2 border-white px-1 font-normal"
+                    >
+                      Club
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Standard
+                    </th>
+                    <th class="w-12 border border-white px-1 font-normal">
+                      Savana
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="even:bg-custom-lightcream">
+                    <td class="px-1 text-center"></td>
+                    <td class="px-1 text-center">Sun - Thu</td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                  </tr>
+                  <tr class="even:bg-custom-lightcream">
+                    <td class="px-1 text-center">
+                      <div class="text-lg">
+                        <p>Jan 31</p>
+                        <p>Dec 14</p>
+                      </div>
+                    </td>
+                    <td class="px-1 text-center">Fri - Sat</td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                    <td class="border-custom-blue2 border px-1 text-center">
+                      10
+                    </td>
+                  </tr>
+                  <tr class="even:bg-custom-lightcream">
+                    <td class="px-1 text-center"></td>
+                    <td class="px-1 text-center">Weekly Total</td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                    <td
+                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                    >
+                      10
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-8">
+              <button
+                v-for="(year, i) in years"
+                :key="i"
+                @click="selected_year = year"
+                class="border-custom-blue2 m-3 rounded border px-8 py-1"
+                :class="
+                  selected_year === year
+                    ? 'bg-custom-blue2 text-white'
+                    : 'bg-custom-lightcream'
+                "
+              >
+                {{ year }}
+              </button>
+
+              <button
+                @click="show_weekly_total = !show_weekly_total"
+                class="border-custom-blue2 bg-custom-blue2 rounded border px-5 py-1 text-white md:float-right"
+              >
+                Show Weekly Total
+              </button>
+            </div>
+          </section>
+          <!-- point chart send -->
+          <section>
+            <div class="mx-auto mt-5 w-11/12">
+              <p class="text-custom-orange3 text-center text-2xl md:text-3xl">
+                HOW TO USE THE VACATION POINT CALCULATOR
+              </p>
+              <div class="mt-5 space-y-3 text-xl md:text-2xl">
+                <p>
+                  This is our Vacation Point Calculator. The purpose of this
+                  tool is to assist buyers as they determine the right size
+                  membership for their family.
+                </p>
+                <p>
+                  There are Point Charts for each of the 15 Resorts, and the
+                  points per night will vary, depending on several factors. A
+                  two bedroom villa will naturally require more points per night
+                  than a deluxe studio. Do you typically travel during peak or
+                  off season? The number of points for each of the Disney
+                  Vacation Club Resorts will appear as you input the different
+                  dates and room sizes.
+                </p>
+                <p>
+                  As always, please let us know if you have any questions. We
+                  look forward to assisting you in any way we can!
+                </p>
+              </div>
+            </div>
+          </section>
+
           <!-- main content end -->
         </div>
         <div class="right-sidebar hidden w-1/6 lg:block"></div>
@@ -114,11 +515,470 @@ export default {
   components: { Header, DatePicker },
   data() {
     return {
-      range: {},
+      range: {
+        start: "",
+        end: "",
+      },
       masks: {
         input: "DD-MM-YYYY",
       },
+      resort_points: [
+        {
+          name: "Animal Kingdom",
+          view: ["Value", "Standard", "Savana", "Club"],
+          studio: [22, 32, 38, 46],
+          one_bedroom: [46, 60, 72, 94],
+          two_bedroom: [60, 76, 98, 126],
+          three_bedroom: ["-", 180, 198, "-"],
+          other: ["", "", "", ""],
+        },
+        {
+          name: "Aulani",
+          view: ["Standard", "Island", "Poolside", "Ocean"],
+          studio: [22, 32, 38, 46],
+          one_bedroom: [46, 80, 72, 94],
+          two_bedroom: [90, 76, 98, 126],
+          three_bedroom: ["-", 182, 198, "-"],
+          other: ["Hotel 34", "-", "-", "-"],
+        },
+        {
+          name: "Bay Lake Tower",
+          view: ["Standard", "Lake", "Majic"],
+          studio: [22, 32, 38],
+          one_bedroom: [46, 72, 94],
+          two_bedroom: [76, 98, 126],
+          three_bedroom: ["-", 198, "-"],
+          other: ["", "", ""],
+        },
+        {
+          name: "Beach Club",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "BoarkWalk",
+          view: ["Standard", "Prefereed"],
+          studio: [22, 32],
+          one_bedroom: [72, 94],
+          two_bedroom: [90, 126],
+          three_bedroom: [182, 198],
+          other: ["", ""],
+        },
+        {
+          name: "Boulder Ridge",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "Copper Creek",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "Grand CA",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "Grand Floradian",
+          view: ["Standard", "Prefereed"],
+          studio: [22, 32],
+          one_bedroom: [72, 94],
+          two_bedroom: [90, 126],
+          three_bedroom: [182, 198],
+          other: ["", ""],
+        },
+        {
+          name: "Hilton Head",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "Old Key West",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: [""],
+        },
+        {
+          name: "Polynesian",
+          view: ["Standard", "Prefereed"],
+          studio: [22, 32],
+          one_bedroom: [72, 94],
+          two_bedroom: [90, 126],
+          three_bedroom: [182, 198],
+          other: ["", ""],
+        },
+        {
+          name: "Riviera",
+          view: ["Standard", "Prefereed"],
+          studio: [22, 32],
+          one_bedroom: [72, 94],
+          two_bedroom: [90, 126],
+          three_bedroom: [182, 198],
+          other: ["Tower 36", "-"],
+        },
+        {
+          name: "Saratoga Springs",
+          view: ["Standard", "Prefereed"],
+          studio: [22, 32],
+          one_bedroom: [72, 94],
+          two_bedroom: [90, 126],
+          three_bedroom: [182, 198],
+          other: ["Tree 82", "-"],
+        },
+        {
+          name: "Vero Beach",
+          view: ["Standard"],
+          studio: [38],
+          one_bedroom: [46],
+          two_bedroom: [126],
+          three_bedroom: ["-"],
+          other: ["Inn 30 / 38"],
+        },
+      ],
+      // seasons: {
+      //   room: [
+      //     {
+      //       name: "Studio",
+      //       views: [
+      //         {
+      //           name: "Value",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Standard",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Savana",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Club",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       name: "Studio",
+      //       type: [
+      //         {
+      //           name: "Value",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Standard",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Savana",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Club",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       name: "One Bedroom",
+      //       type: [
+      //         {
+      //           name: "Value",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Standard",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Savana",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Club",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       name: "Two Bedroom",
+      //       type: [
+      //         {
+      //           name: "Value",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Standard",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Savana",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Club",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       name: "Grand Villa",
+      //       type: [
+      //         {
+      //           name: "Value",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Standard",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Savana",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //         {
+      //           name: "Club",
+      //           dates: [
+      //             "Feb 1 - 15",
+      //             "Jun 11 - Aug 31",
+      //             "Oct 1 - Nov 22",
+      //             "Nov 26 - Nov 30",
+      //           ],
+      //           days: "Sun - Thu",
+      //           weekly: 50,
+      //           weekend: 28,
+      //           total: 47,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+
+      years: [2019, 2020, 2021, 2022],
+      selected_year: 2022,
     };
+  },
+  methods: {
+    usman() {
+      console.log(this.range);
+    },
   },
 };
 </script>
+<style>
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1f4e79;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #337ab7;
+}
+</style>
