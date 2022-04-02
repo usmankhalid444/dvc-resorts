@@ -1,14 +1,14 @@
 <template>
   <div class="sticky top-0 z-50">
     <div
-      class="bg-custom-blue3 z-40 grid w-full grid-cols-12 px-4 text-white md:px-12"
+      class="z-40 grid w-full grid-cols-12 bg-custom-blue3 px-4 text-white md:px-12"
     >
       <div class="col-span-4 my-auto sm:col-span-5">
         <div class="grid grid-cols-12 md:gap-x-4">
           <div class="col-span-12 my-auto lg:col-span-2 2xl:hidden">
             <button
               @click="showMenu = !showMenu"
-              class="hover:bg-custom-blue2 my-2 w-24 rounded border border-white bg-transparent py-0.5 sm:my-auto lg:w-full"
+              class="my-2 w-24 rounded border border-white bg-transparent py-0.5 hover:bg-custom-blue2 sm:my-auto lg:w-full"
             >
               <i v-if="showMenu" class="fas fa-times"></i>
               <span v-else>Menu</span>
@@ -35,11 +35,11 @@
             <div class="group relative inline-block text-left">
               <i class="fas fa-bell pb-2 text-xl"></i>
               <div
-                class="custom-sidebar bg-custom-lightcream text-custom-blue5 absolute -left-80 hidden h-96 w-96 overflow-y-auto rounded p-4 shadow-xl group-hover:block"
+                class="custom-sidebar absolute -left-80 hidden h-96 w-96 overflow-y-auto rounded bg-custom-lightcream p-4 text-custom-blue5 shadow-xl group-hover:block"
               >
                 <a href="#" v-for="(item, i) in 10" :key="i">
                   <div
-                    class="bg-custom-lightergreen mb-5 rounded p-2 shadow-md"
+                    class="mb-5 rounded bg-custom-lightergreen p-2 shadow-md"
                   >
                     <span class="float-left text-xl font-bold"
                       >- Lori Webb.</span
@@ -62,7 +62,7 @@
           <li class="inline">
             <a
               href="#"
-              class="bg-custom-green1 hover:bg-custom-darkgreen rounded-md border border-white p-1.5 text-2xl"
+              class="rounded-md border border-white bg-custom-green1 p-1.5 text-2xl hover:bg-custom-darkgreen"
             >
               LOGIN <i class="fas fa-user"></i>
             </a>
@@ -72,20 +72,20 @@
     </div>
     <!-- sidebar start -->
     <div
-      class="custom-sidebar bg-custom-lightcream absolute z-30 hidden max-h-screen w-56 overflow-y-auto px-2 pt-3 pb-10 shadow transition-all duration-700 ease-in-out"
+      class="custom-sidebar absolute z-30 max-h-screen w-56 overflow-y-auto bg-custom-lightcream px-2 pt-3 pb-10 shadow transition-all duration-700 ease-in-out"
       :class="showMenu ? 'left-0' : '-left-96 2xl:left-0'"
     >
-      <ul class="text-custom-blue4 mb-8 italic">
+      <ul class="mb-8 italic text-custom-blue4">
         <li v-for="(menu, i) in sideMenu" :key="i">
           <p
             v-if="menu.link.length <= 0"
-            class="text-custom-orange2 my-1 px-2 text-2xl font-bold underline"
+            class="my-1 px-2 text-2xl font-bold text-custom-orange2 underline"
           >
             {{ menu.name }}
           </p>
           <router-link
             v-else
-            class="hover:bg-custom-blue3 block px-3 py-0.5 text-xl hover:text-white"
+            class="block px-3 py-0.5 text-xl hover:bg-custom-blue3 hover:text-white"
             :to="menu.link"
             >{{ menu.name }}</router-link
           >
