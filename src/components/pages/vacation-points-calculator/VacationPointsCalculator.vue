@@ -1,10 +1,10 @@
 <template>
   <div>
     <Header />
-    <div class="main-page bg-custom-bg1 text-custom-blue4 pt-5 pb-12 text-xl">
+    <div class="main-page bg-custom-bg1 pt-5 pb-12 text-xl text-custom-blue4">
       <!-- page title start-->
       <h1
-        class="font-body text-custom-primary md:text-pTitle my-5 text-center text-2xl font-normal uppercase"
+        class="my-5 text-center font-body text-2xl font-normal uppercase text-custom-primary md:text-pTitle"
       >
         DISNEY VACATION POINTS CALCULATOR
       </h1>
@@ -15,11 +15,11 @@
           <!-- main content start  -->
           <!-- date picker start -->
           <section>
-            <div class="xl:w-35rem mx-auto w-full lg:w-96">
+            <div class="mx-auto w-full lg:w-96 xl:w-35rem">
               <form class="rounded px-5 py-3" @submit.prevent>
                 <div class="mb-4">
                   <span
-                    class="text-custom-orange2 mb-2 inline text-left text-3xl"
+                    class="mb-2 inline text-left text-3xl text-custom-orange2"
                     >TRAVEL DATES</span
                   >
                   <DatePicker
@@ -96,7 +96,7 @@
                   </DatePicker>
                 </div>
               </form>
-              <p class="text-custom-green1 text-center text-2xl">
+              <p class="text-center text-2xl text-custom-green1">
                 ( 2 Nights )
               </p>
             </div>
@@ -129,7 +129,7 @@
                     <td class="pl-5">
                       <p>{{ resort.name }}</p>
                       <button
-                        class="bg-custom-green1 my-2 hidden rounded py-0.5 px-1 text-white group-hover:block"
+                        class="my-2 hidden rounded bg-custom-green1 py-0.5 px-1 text-white group-hover:block"
                       >
                         Point Chart
                       </button>
@@ -172,11 +172,11 @@
               </table>
               <div v-if="range.start == ''">
                 <div
-                  class="h-35rem absolute top-0 w-full bg-gray-400 text-center opacity-40"
+                  class="absolute top-0 h-35rem w-full bg-gray-400 text-center opacity-40"
                 ></div>
                 <div class="absolute top-0 w-full text-center">
                   <span
-                    class="bg-custom-lightcream mt-32 inline-block rounded px-5 py-1 text-5xl"
+                    class="mt-32 inline-block rounded bg-custom-lightcream px-5 py-1 text-5xl"
                   >
                     Select date above
                   </span>
@@ -195,7 +195,7 @@
                 <thead>
                   <tr class="bg-custom-blue3 text-white">
                     <th>Dates</th>
-                    <th>Days</th>
+                    <th class="w-1/12">Days</th>
                     <th class="border-l border-r-2 border-white" colspan="4">
                       Studio
                     </th>
@@ -210,8 +210,8 @@
                     </th>
                   </tr>
                   <tr class="bg-custom-blue2 text-white">
-                    <th class="bg-custom-blue3 w-12 px-1 font-normal"></th>
-                    <th class="bg-custom-blue3 w-12 px-1 font-normal"></th>
+                    <th class="w-12 bg-custom-blue3 px-1 font-normal"></th>
+                    <th class="w-12 bg-custom-blue3 px-1 font-normal"></th>
                     <th class="w-12 border border-white px-1 font-normal">
                       Value
                     </th>
@@ -264,184 +264,183 @@
                 </thead>
                 <tbody>
                   <tr class="even:bg-custom-lightcream">
-                    <td class="px-1 text-center"></td>
-                    <td class="px-1 text-center">Sun - Thu</td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
-                    >
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
-                    >
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
-                    >
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                  </tr>
-                  <tr class="even:bg-custom-lightcream">
-                    <td class="px-1 text-center">
+                    <td class="px-1 text-center" rowspan="3">
                       <div class="text-lg">
                         <p>Jan 31</p>
                         <p>Dec 14</p>
+                        <p>Dec 14</p>
                       </div>
                     </td>
-                    <td class="px-1 text-center">Fri - Sat</td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="px-1 text-center">Sun - Thu</td>
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
-                    >
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
-                      10
-                    </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
                     <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
                     >
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
                     <td
-                      class="border-custom-blue2 border border-r-2 px-1 text-center"
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
                     >
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
-                    <td class="border-custom-blue2 border px-1 text-center">
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
                       10
                     </td>
                   </tr>
                   <tr class="even:bg-custom-lightcream">
-                    <td class="px-1 text-center"></td>
+                    <td class="px-1 text-center">Fri - Sat</td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td
+                      class="border border-r-2 border-custom-blue2 px-1 text-center"
+                    >
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                    <td class="border border-custom-blue2 px-1 text-center">
+                      10
+                    </td>
+                  </tr>
+                  <tr class="even:bg-custom-lightcream">
                     <td class="px-1 text-center">Weekly Total</td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                      class="border border-r-2 border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                      class="border border-r-2 border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-r-2 border-white px-1 text-center text-white"
+                      class="border border-r-2 border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
                     <td
-                      class="bg-custom-blue2 border border-white px-1 text-center text-white"
+                      class="border border-white bg-custom-blue2 px-1 text-center text-white"
                     >
                       10
                     </td>
@@ -454,7 +453,7 @@
                 v-for="(year, i) in years"
                 :key="i"
                 @click="selected_year = year"
-                class="border-custom-blue2 m-3 rounded border px-8 py-1"
+                class="m-3 rounded border border-custom-blue2 px-8 py-1"
                 :class="
                   selected_year === year
                     ? 'bg-custom-blue2 text-white'
@@ -463,10 +462,9 @@
               >
                 {{ year }}
               </button>
-
               <button
                 @click="show_weekly_total = !show_weekly_total"
-                class="border-custom-blue2 bg-custom-blue2 rounded border px-5 py-1 text-white md:float-right"
+                class="m-3 rounded border border-custom-blue2 bg-custom-blue2 px-5 py-1 text-white md:float-right"
               >
                 Show Weekly Total
               </button>
@@ -475,7 +473,7 @@
           <!-- point chart send -->
           <section>
             <div class="mx-auto mt-5 w-11/12">
-              <p class="text-custom-orange3 text-center text-2xl md:text-3xl">
+              <p class="text-center text-2xl text-custom-orange3 md:text-3xl">
                 HOW TO USE THE VACATION POINT CALCULATOR
               </p>
               <div class="mt-5 space-y-3 text-xl md:text-2xl">
